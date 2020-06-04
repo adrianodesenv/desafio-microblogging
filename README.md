@@ -1,9 +1,13 @@
 ## 💥 GRUPO BOTICÁRIO | DESAFIO MOBILE
 
-Obs: a api para consumir o Json o link das imagens não está disponivel.
+Obs: A api para consumir o JSON das últimas noticias tem um problema, o link das imagens não está disponivel, foi utilizado imagem local.
+
+O apk para teste está na raiz do projeto com o nome app-release.apk
+
+---
 
 Nome: Adriano Gomes Moreira
 
-email: adriano@moreiradigital.comm.br
+email: adriano@moreiradigital.com.br
 
 site:https://moreiradigital.com.br

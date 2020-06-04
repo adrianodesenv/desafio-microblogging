@@ -48,10 +48,10 @@ const AuthProvider: React.FC = ({children}) => {
   }, []);
 
   const signIn = useCallback(async ({email, password}) => {
-    const token = 'fakjdfklafjdklfajld';
+    const token = 'boticarioAABBCDDFDFDF';
     const user = {
-      id: '123',
-      name: 'Adriano',
+      id: new Date().getTime().toString(),
+      name: email.split('@')[0].replace('.', ' ').replace('_', ' '),
       email,
     };
 

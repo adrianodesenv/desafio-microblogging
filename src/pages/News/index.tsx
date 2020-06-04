@@ -1,9 +1,8 @@
-import React, {useEffect, useState, useCallback} from 'react';
-import {View, Button} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, ActivityIndicator} from 'react-native';
 import axios from 'axios';
 
 import formatDate from '../../utils/formatDate';
-import {useAuth} from '../../hooks/auth';
 
 import {
   NewsContainer,
@@ -33,30 +32,37 @@ interface INews {
   message: Message;
 }
 const News: React.FC = () => {
-  const {signOut} = useAuth();
+  const [loading, setLoading] = useState(false);
 
   const [noticias, setNoticias] = useState<INews[]>([]);
 
   useEffect(() => {
     async function loadNews(): Promise<void> {
-      const response = await axios.get(
-        'https://gb-mobile-app-teste.s3.amazonaws.com/data.json',
-      );
+      setLoading(true);
+      try {
+        const response = await axios.get(
+          'https://gb-mobile-app-teste.s3.amazonaws.com/data.json',
+        );
 
-      const n = response.data.news.map((elem: INews, index: Number) => {
-        elem.id = index.toString();
+        const n = response.data.news.map((elem: INews, index: Number) => {
+          elem.id = index.toString();
 
-        const date = new Date(elem.message.created_at);
-        elem.message.formattedDate = formatDate(Number(date));
-        return elem;
-      });
-      setNoticias(n);
+          const date = new Date(elem.message.created_at);
+          elem.message.formattedDate = formatDate(Number(date));
+          return elem;
+        });
+        setNoticias(n);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
     }
     loadNews();
   }, []);
 
   return (
     <NewsContainer>
+      {loading ? <ActivityIndicator size="small" /> : null}
       <NewsList
         data={noticias}
         keyExtractor={(item) => item.id}

@@ -19,4 +19,15 @@ export const Text = styled.Text`
   color: #fff;
   align-items: center;
   text-align: center;
+  font-family: 'RobotoSlab-Regular';
+`;
+
+export const TextUser = styled.Text`
+  width: 100%;
+  color: #6fa287;
+  align-items: center;
+  text-align: center;
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  font-family: 'RobotoSlab-Regular';
 `;
